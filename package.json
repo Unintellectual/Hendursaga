@@ -1,0 +1,27 @@
+{
+  "name": "hendursaga",
+  "version": "1.0.0",
+  "description": "**Hendursaga** is a **local-first** monitoring dashboard designed to oversee your **home network, local servers, and system performance**. Named after the Mesopotamian god **Hendursaga**, known as a divine night watchman and protector, this project embodies vigilance and guardianship over your infrastructure.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Unintellectual/Hendursaga.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Unintellectual/Hendursaga/issues"
+  },
+  "homepage": "https://github.com/Unintellectual/Hendursaga#readme",
+  "devDependencies": {
+    "tailwindcss": "^4.0.14"
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.0.14"
+  }
+}

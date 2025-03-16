@@ -1,43 +1,20 @@
-# Simple Makefile for a Go project
+# Makefile
+.PHONY: build
 
-# Build the application
-all: build test
+BINARY_NAME=spendings
 
+# build builds the tailwind css sheet, and compiles the binary into a usable thing.
 build:
-	@echo "Building..."
-	
-	
-	@go build -o main cmd/api/main.go
+	go mod tidy && \
+   	templ generate && \
+	go generate && \
+	go build -ldflags="-w -s" -o ${BINARY_NAME}
 
-# Run the application
-run:
-	@go run cmd/api/main.go
+# dev runs the development server where it builds the tailwind css sheet,
+# and compiles the project whenever a file is changed.
+dev:
+	templ generate --watch --cmd="go generate" &\
+	templ generate --watch --cmd="go run ."
 
-# Test the application
-test:
-	@echo "Testing..."
-	@go test ./... -v
-
-# Clean the binary
 clean:
-	@echo "Cleaning..."
-	@rm -f main
-
-# Live Reload
-watch:
-	@if command -v air > /dev/null; then \
-            air; \
-            echo "Watching...";\
-        else \
-            read -p "Go's 'air' is not installed on your machine. Do you want to install it? [Y/n] " choice; \
-            if [ "$$choice" != "n" ] && [ "$$choice" != "N" ]; then \
-                go install github.com/air-verse/air@latest; \
-                air; \
-                echo "Watching...";\
-            else \
-                echo "You chose not to install air. Exiting..."; \
-                exit 1; \
-            fi; \
-        fi
-
-.PHONY: all build run test clean watch
+	go clean

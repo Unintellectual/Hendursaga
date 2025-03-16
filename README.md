@@ -38,12 +38,12 @@
 
 ## 🛠️ Tech Stack
 ### **Backend** (Golang)
-- **Gin/Fiber** – Web API for system data.
+- **Gorilla Mux** – Web API for system data.
 - **Prometheus Go Client** – Metrics collection.
 - **ElasticSearch Go Client** – Log aggregation.
 
-### **Frontend** (React + Tailwind)
-- **React.js** – Web dashboard.
+### **Frontend** (Templ + TailwindCSS)
+- **Templ** – Web dashboard.
 - **TailwindCSS** – UI styling.
 - **Grafana** – Visualization for metrics.
 - **Kibana** – Log searching and analysis.
@@ -67,54 +67,6 @@
 6. [ ] **Containerize and automate deployment with GitHub Actions**.
 
 ---
-
-
-
-## MakeFile
-
-Run build make command with tests
-```bash
-make all
-```
-
-Build the application
-```bash
-make build
-```
-
-Run the application
-```bash
-make run
-```
-Create DB container
-```bash
-make docker-run
-```
-
-Shutdown DB Container
-```bash
-make docker-down
-```
-
-DB Integrations Test:
-```bash
-make itest
-```
-
-Live reload the application:
-```bash
-make watch
-```
-
-Run the test suite:
-```bash
-make test
-```
-
-Clean up binary from the last build:
-```bash
-make clean
-```
 
 
 ### 📢 Want to contribute or improve the setup? Open an issue or submit a PR! 🚀
