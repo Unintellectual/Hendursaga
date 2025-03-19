@@ -24,7 +24,7 @@
 - [ ] Send alerts via **Discord, Slack, or Email**.
 - [ ] Custom notification rules for **high CPU usage, memory leaks, or container failures**.
 
-### ✅ Web Dashboard (React + Tailwind + Grafana + Kibana)
+### ✅ Web Dashboard (Blazor + Tailwind + Grafana + Kibana)
 - [ ] **Real-time graphs** for system performance (CPU, memory, network traffic).
 - [ ] **Kibana integration** for searching logs.
 - [ ] **Container & Kubernetes status overview**.
@@ -37,38 +37,35 @@
 - [ ] **GitHub Actions** automates build and deployment.
 
 ## 🛠️ Tech Stack
-### **Backend** (Golang)
-- **Gorilla Mux** – Web API for system data.
-- **Prometheus Go Client** – Metrics collection.
-- **ElasticSearch Go Client** – Log aggregation.
+### **Backend** (.NET 9 + C#)
+- **ASP.NET Core** – Web API for system data.
+- **System.Diagnostics & PerformanceCounter** – System metrics collection.
+- **ElasticSearch NEST Client** – Log aggregation.
 
-### **Frontend** (Templ + TailwindCSS)
-- **Templ** – Web dashboard.
+### **Frontend** (Blazor + TailwindCSS)
+- **Blazor WebAssembly** – Interactive web dashboard.
 - **TailwindCSS** – UI styling.
 - **Grafana** – Visualization for metrics.
 - **Kibana** – Log searching and analysis.
 
 ### **Monitoring & Logging**
-- **Prometheus + Node Exporter** – System performance metrics.
-- **ELK Stack (Elasticsearch, Logstash, Kibana)** – Logging and visualization.
-- **Alertmanager** – Custom alerting system.
+- [ ] **Prometheus + Node Exporter** – System performance metrics.
+- [ ] **ELK Stack (Elasticsearch, Logstash, Kibana)** – Logging and visualization.
+- [ ] **Alertmanager** – Custom alerting system.
 
 ### **Deployment & DevOps**
-- **Docker & K3s** – Container orchestration.
-- **Helm** – Kubernetes package management.
-- **GitHub Actions** – Automated CI/CD.
+- [ ] **Docker & K3s** – Container orchestration.
+- [ ] **Helm** – Kubernetes package management.
+- [ ] **GitHub Actions** – Automated CI/CD.
 
 ## 📌 Next Steps
 1. [ ] **Set up K3s locally**.
-2. [ ] **Deploy Golang backend** for system metrics.
+2. [ ] **Deploy C# ASP.NET backend** for system metrics.
 3. [ ] **Install Prometheus & Node Exporter**.
 4. [ ] **Set up ELK Stack**.
-5. [ ] **Develop React frontend with Tailwind**.
+5. [ ] **Develop Blazor frontend with Tailwind**.
 6. [ ] **Containerize and automate deployment with GitHub Actions**.
 
 ---
 
-
 ### 📢 Want to contribute or improve the setup? Open an issue or submit a PR! 🚀
-
-
