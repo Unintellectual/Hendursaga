@@ -37,7 +37,7 @@
 - [ ] **GitHub Actions** automates build and deployment.
 
 ## 🛠️ Tech Stack
-### **Backend** (.NET 9 + C#)
+### **Backend** (.NET 8 + C#)
 - **ASP.NET Core** – Web API for system data.
 - **System.Diagnostics & PerformanceCounter** – System metrics collection.
 - **ElasticSearch NEST Client** – Log aggregation.

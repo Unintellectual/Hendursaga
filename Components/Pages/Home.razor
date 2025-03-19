@@ -1,0 +1,17 @@
+﻿@page "/"
+@inject IHttpClientFactory HttpClientFactory
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, Hendursaga!</h1>
+
+<h1>@message</h1>
+
+@code {
+    private string message = "Loading...";
+
+    protected override async Task OnInitializedAsync()
+    {
+        var client = HttpClientFactory.CreateClient("BackendClient"); // Use the named HttpClient
+        message = await client.GetStringAsync("api/hello"); // No leading `/`
+    }
+}

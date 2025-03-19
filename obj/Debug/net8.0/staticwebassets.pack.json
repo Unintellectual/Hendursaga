@@ -1,0 +1,41 @@
+{
+  "Files": [
+    {
+      "Id": "/home/noah/Projects/Personal/Hendursaga/obj/Debug/net8.0/scopedcss/projectbundle/Hendursaga.bundle.scp.css",
+      "PackagePath": "staticwebassets/Hendursaga.bundle.scp.css"
+    },
+    {
+      "Id": "/home/noah/Projects/Personal/Hendursaga/wwwroot/app.css",
+      "PackagePath": "staticwebassets/app.css"
+    },
+    {
+      "Id": "/home/noah/Projects/Personal/Hendursaga/wwwroot/bootstrap/bootstrap.min.css",
+      "PackagePath": "staticwebassets/bootstrap/bootstrap.min.css"
+    },
+    {
+      "Id": "/home/noah/Projects/Personal/Hendursaga/wwwroot/bootstrap/bootstrap.min.css.map",
+      "PackagePath": "staticwebassets/bootstrap/bootstrap.min.css.map"
+    },
+    {
+      "Id": "/home/noah/Projects/Personal/Hendursaga/wwwroot/favicon.png",
+      "PackagePath": "staticwebassets/favicon.png"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.Hendursaga.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.build.Hendursaga.props",
+      "PackagePath": "build\\Hendursaga.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.Hendursaga.props",
+      "PackagePath": "buildMultiTargeting\\Hendursaga.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.Hendursaga.props",
+      "PackagePath": "buildTransitive\\Hendursaga.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
