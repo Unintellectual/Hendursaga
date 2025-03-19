@@ -20,7 +20,6 @@
 /home/noah/Projects/Personal/Hendursaga/obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.Hendursaga.props
 /home/noah/Projects/Personal/Hendursaga/obj/Debug/net8.0/staticwebassets.pack.json
 /home/noah/Projects/Personal/Hendursaga/obj/Debug/net8.0/scopedcss/Components/Layout/MainLayout.razor.rz.scp.css
-/home/noah/Projects/Personal/Hendursaga/obj/Debug/net8.0/scopedcss/Components/Layout/NavMenu.razor.rz.scp.css
 /home/noah/Projects/Personal/Hendursaga/obj/Debug/net8.0/scopedcss/bundle/Hendursaga.styles.css
 /home/noah/Projects/Personal/Hendursaga/obj/Debug/net8.0/scopedcss/projectbundle/Hendursaga.bundle.scp.css
 /home/noah/Projects/Personal/Hendursaga/obj/Debug/net8.0/Hendursaga.dll

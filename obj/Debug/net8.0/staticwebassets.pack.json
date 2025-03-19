@@ -9,18 +9,6 @@
       "PackagePath": "staticwebassets/app.css"
     },
     {
-      "Id": "/home/noah/Projects/Personal/Hendursaga/wwwroot/bootstrap/bootstrap.min.css",
-      "PackagePath": "staticwebassets/bootstrap/bootstrap.min.css"
-    },
-    {
-      "Id": "/home/noah/Projects/Personal/Hendursaga/wwwroot/bootstrap/bootstrap.min.css.map",
-      "PackagePath": "staticwebassets/bootstrap/bootstrap.min.css.map"
-    },
-    {
-      "Id": "/home/noah/Projects/Personal/Hendursaga/wwwroot/favicon.png",
-      "PackagePath": "staticwebassets/favicon.png"
-    },
-    {
       "Id": "obj/Debug/net8.0/staticwebassets/msbuild.Hendursaga.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },
