@@ -27,3 +27,11 @@
 /home/noah/Projects/Personal/Hendursaga/obj/Debug/net8.0/Hendursaga.pdb
 /home/noah/Projects/Personal/Hendursaga/obj/Debug/net8.0/Hendursaga.genruntimeconfig.cache
 /home/noah/Projects/Personal/Hendursaga/obj/Debug/net8.0/ref/Hendursaga.dll
+/home/noah/Projects/Personal/Hendursaga/obj/Debug/net8.0/Hendursaga.sourcelink.json
+/home/noah/Projects/Personal/Hendursaga/bin/Debug/net8.0/DotNetEnv.dll
+/home/noah/Projects/Personal/Hendursaga/bin/Debug/net8.0/Prometheus.NetStandard.dll
+/home/noah/Projects/Personal/Hendursaga/bin/Debug/net8.0/Prometheus.AspNetCore.dll
+/home/noah/Projects/Personal/Hendursaga/bin/Debug/net8.0/Sprache.dll
+/home/noah/Projects/Personal/Hendursaga/obj/Debug/net8.0/Hendursaga.csproj.AssemblyReference.cache
+/home/noah/Projects/Personal/Hendursaga/obj/Debug/net8.0/Hendursaga.MvcApplicationPartsAssemblyInfo.cs
+/home/noah/Projects/Personal/Hendursaga/obj/Debug/net8.0/Hendursaga.csproj.Up2Date

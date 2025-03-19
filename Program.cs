@@ -1,27 +1,17 @@
-using Hendursaga.Components;
+using Prometheus;
+using Hendursaga.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddHttpClient();  // HTTP Client for API calls
+builder.Services.AddLogging();     // Enable logging
 
-// Add services to the container.
-builder.Services.AddRazorComponents()
-    .AddInteractiveServerComponents();
+// Register JellyfinMetricsService as a background service
+builder.Services.AddSingleton<JellyfinMetricsService>();
+builder.Services.AddHostedService<JellyfinMetricsService>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Error", createScopeForErrors: true);
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
-}
-
-app.UseHttpsRedirection();
-
-app.UseStaticFiles();
-app.UseAntiforgery();
-
-app.MapRazorComponents<App>()
-    .AddInteractiveServerRenderMode();
+// Enable Prometheus metrics with top-level route registration
+app.MapMetrics(); // `/metrics` will be exposed
 
 app.Run();

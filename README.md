@@ -24,7 +24,7 @@
 - [ ] Send alerts via **Discord, Slack, or Email**.
 - [ ] Custom notification rules for **high CPU usage, memory leaks, or container failures**.
 
-### ✅ Web Dashboard (Blazor + Tailwind + Grafana + Kibana)
+### ✅ Web Dashboard (Blazor + Bootstrap + Grafana + Kibana)
 - [ ] **Real-time graphs** for system performance (CPU, memory, network traffic).
 - [ ] **Kibana integration** for searching logs.
 - [ ] **Container & Kubernetes status overview**.
@@ -42,9 +42,9 @@
 - **System.Diagnostics & PerformanceCounter** – System metrics collection.
 - **ElasticSearch NEST Client** – Log aggregation.
 
-### **Frontend** (Blazor + TailwindCSS)
+### **Frontend** (Blazor + Bootstrap)
 - **Blazor WebAssembly** – Interactive web dashboard.
-- **TailwindCSS** – UI styling.
+- **BootStrap** – UI styling.
 - **Grafana** – Visualization for metrics.
 - **Kibana** – Log searching and analysis.
 
