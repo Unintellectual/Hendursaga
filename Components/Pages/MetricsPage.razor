@@ -1,10 +1,15 @@
 @page "/metrics"
+@inject HttpClient Http
 
 <h3>Jellyfin Metrics</h3>
 
 @if (Metrics == null)
 {
     <p>Loading...</p>
+}
+else if (Metrics.Count == 0)
+{
+    <p>No data available.</p>
 }
 else
 {
@@ -20,7 +25,7 @@ else
             @foreach (var metric in Metrics)
             {
                 <tr>
-                    <td>@metric.Timestamp</td>
+                    <td>@metric.Timestamp.ToString("yyyy-MM-dd HH:mm:ss")</td>
                     <td>@metric.ActiveUsers</td>
                     <td>@metric.StreamingSessions</td>
                 </tr>
@@ -30,14 +35,21 @@ else
 }
 
 @code {
-    private List<Metric> Metrics;
+    private List<JellyfinMetric> Metrics { get; set; } = new();
 
     protected override async Task OnInitializedAsync()
     {
-        Metrics = await Http.GetFromJsonAsync<List<Metric>>("api/jellyfin/metrics");
+        try
+        {
+            Metrics = await Http.GetFromJsonAsync<List<JellyfinMetric>>("api/jellyfin/metrics") ?? new List<JellyfinMetric>();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error fetching metrics: {ex.Message}");
+        }
     }
 
-    public class Metric
+    public class JellyfinMetric
     {
         public DateTime Timestamp { get; set; }
         public int ActiveUsers { get; set; }

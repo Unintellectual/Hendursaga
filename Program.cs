@@ -9,16 +9,12 @@ Env.Load();
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Database configuration
-var connectionString = Environment.GetEnvironmentVariable("POSTGRES_CONNECTION_STRING");
-if (string.IsNullOrEmpty(connectionString))
-{
-    throw new InvalidOperationException("POSTGRES_CONNECTION_STRING is not set.");
-}
+// Database configuration (SQLite)
+var connectionString = "Data Source=hendursaga.db"; // SQLite connection string
 
 // Add services to the container
 builder.Services.AddDbContext<HendursagaDbContext>(options =>
-    options.UseNpgsql(connectionString));
+    options.UseSqlite(connectionString));
 
 builder.Services.AddHttpClient();  // HTTP Client for API calls
 builder.Services.AddLogging();     // Enable logging
@@ -31,7 +27,6 @@ var app = builder.Build();
 
 app.UseRouting();
 app.UseAuthorization();
-
 
 app.MapControllers();
 

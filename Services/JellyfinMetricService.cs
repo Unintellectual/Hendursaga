@@ -4,10 +4,11 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Hendursaga.Services;
 using Hendursaga.Models;
+
 
 namespace Hendursaga.Services
 {
@@ -15,26 +16,13 @@ namespace Hendursaga.Services
     {
         private readonly HttpClient _httpClient;
         private readonly ILogger<JellyfinMetricsService> _logger;
-        private readonly HendursagaDbContext _dbContext;
-        private readonly string _jellyfinUrl;
-        private readonly string _apiKey;
+        private readonly IServiceScopeFactory _scopeFactory; // Use scope factory to get DbContext
 
-        public JellyfinMetricsService(HttpClient httpClient, ILogger<JellyfinMetricsService> logger, HendursagaDbContext dbContext)
+        public JellyfinMetricsService(HttpClient httpClient, ILogger<JellyfinMetricsService> logger, IServiceScopeFactory scopeFactory)
         {
             _httpClient = httpClient;
             _logger = logger;
-            _dbContext = dbContext;
-
-            _jellyfinUrl = Environment.GetEnvironmentVariable("JELLYFIN_URL")?.Trim();
-            _apiKey = Environment.GetEnvironmentVariable("JELLYFIN_API_KEY")?.Trim();
-
-            if (string.IsNullOrEmpty(_jellyfinUrl) || string.IsNullOrEmpty(_apiKey))
-            {
-                _logger.LogError("JELLYFIN_URL or JELLYFIN_API_KEY is not set. Please check your environment variables.");
-                throw new InvalidOperationException("Jellyfin URL and API Key must be set.");
-            }
-
-            _logger.LogInformation("JellyfinMetricsService initialized with URL: {JellyfinUrl}", _jellyfinUrl);
+            _scopeFactory = scopeFactory;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -50,10 +38,9 @@ namespace Hendursaga.Services
         {
             try
             {
-                var requestUrl = $"{_jellyfinUrl}/Sessions?api_key={_apiKey}";
-                _logger.LogDebug("Fetching Jellyfin metrics from {RequestUrl}", requestUrl);
-
+                var requestUrl = $"{Environment.GetEnvironmentVariable("JELLYFIN_URL")}/Sessions?api_key={Environment.GetEnvironmentVariable("JELLYFIN_API_KEY")}";
                 var response = await _httpClient.GetAsync(requestUrl);
+
                 if (!response.IsSuccessStatusCode)
                 {
                     _logger.LogWarning("Failed to fetch Jellyfin metrics: {StatusCode}", response.StatusCode);
@@ -76,7 +63,7 @@ namespace Hendursaga.Services
 
                 int sessionCount = sessions.GetArrayLength();
 
-                // Store in SQLite using EF Core
+                // Store in SQLite using a scoped DbContext
                 await StoreMetricsAsync(activeUsers, sessionCount);
 
                 _logger.LogInformation("Jellyfin Metrics Updated: Users={Users}, Sessions={Sessions}", activeUsers, sessionCount);
@@ -89,14 +76,18 @@ namespace Hendursaga.Services
 
         private async Task StoreMetricsAsync(int activeUsers, int sessionCount)
         {
+            using var scope = _scopeFactory.CreateScope();
+            var dbContext = scope.ServiceProvider.GetRequiredService<HendursagaDbContext>();
+
             var metric = new JellyfinMetric
             {
                 ActiveUsers = activeUsers,
-                StreamingSessions = sessionCount
+                StreamingSessions = sessionCount,
+                Timestamp = DateTime.UtcNow
             };
 
-            _dbContext.JellyfinMetrics.Add(metric);
-            await _dbContext.SaveChangesAsync();
+            dbContext.JellyfinMetrics.Add(metric);
+            await dbContext.SaveChangesAsync();
         }
     }
 }
