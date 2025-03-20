@@ -20,7 +20,7 @@
 - [ ] Detect and flag **critical errors and unusual log patterns**.
 
 ### ✅ Alerting & Notifications
-- [ ] **Prometheus Alertmanager** triggers alerts based on custom thresholds.
+- [ ] **Hendursaga Alertmanager** triggers alerts based on custom thresholds.
 - [ ] Send alerts via **Discord, Slack, or Email**.
 - [ ] Custom notification rules for **high CPU usage, memory leaks, or container failures**.
 
@@ -49,7 +49,7 @@
 - **Kibana** – Log searching and analysis.
 
 ### **Monitoring & Logging**
-- [ ] **Prometheus + Node Exporter** – System performance metrics.
+- [ ] **Hendursaga** – System performance metrics.
 - [ ] **ELK Stack (Elasticsearch, Logstash, Kibana)** – Logging and visualization.
 - [ ] **Alertmanager** – Custom alerting system.
 
