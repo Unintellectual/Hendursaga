@@ -1,12 +1,14 @@
 using Prometheus;
 using Hendursaga.Services;
+using DotNetEnv;
+
+Env.Load();
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddHttpClient();  // HTTP Client for API calls
 builder.Services.AddLogging();     // Enable logging
 
-// Register JellyfinMetricsService as a background service
-builder.Services.AddSingleton<JellyfinMetricsService>();
+// Register JellyfinMetricsService as a background service (Only one registration)
 builder.Services.AddHostedService<JellyfinMetricsService>();
 
 var app = builder.Build();

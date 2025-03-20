@@ -25,9 +25,14 @@ public class JellyfinMetricsService : BackgroundService
         _httpClient = httpClient;
         _logger = logger;
 
-        // Use correct environment variable names
-        _jellyfinUrl = Environment.GetEnvironmentVariable("JELLYFIN_URL") ?? string.Empty;
-        _apiKey = Environment.GetEnvironmentVariable("JELLYFIN_API_KEY") ?? string.Empty;
+        _jellyfinUrl = Environment.GetEnvironmentVariable("JELLYFIN_URL")?.Trim();
+        _apiKey = Environment.GetEnvironmentVariable("JELLYFIN_API_KEY")?.Trim();
+
+        if (string.IsNullOrEmpty(_jellyfinUrl) || string.IsNullOrEmpty(_apiKey))
+        {
+            _logger.LogError("JELLYFIN_URL or JELLYFIN_API_KEY is not set. Please check your environment variables.");
+            throw new InvalidOperationException("Jellyfin URL and API Key must be set.");
+        }
 
         _logger.LogInformation("JellyfinMetricsService initialized with URL: {JellyfinUrl}", _jellyfinUrl);
     }

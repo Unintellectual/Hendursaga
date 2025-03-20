@@ -35,3 +35,4 @@
 /home/noah/Projects/Personal/Hendursaga/obj/Debug/net8.0/Hendursaga.csproj.AssemblyReference.cache
 /home/noah/Projects/Personal/Hendursaga/obj/Debug/net8.0/Hendursaga.MvcApplicationPartsAssemblyInfo.cs
 /home/noah/Projects/Personal/Hendursaga/obj/Debug/net8.0/Hendursaga.csproj.Up2Date
+/home/noah/Projects/Personal/Hendursaga/bin/Debug/net8.0/data/01JPSSZM5D60YD69B40N3H19NC/meta.json
