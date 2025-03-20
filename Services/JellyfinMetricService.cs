@@ -6,8 +6,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Npgsql;
-using Microsoft.Extensions.Configuration;
+using Hendursaga.Services;
+using Hendursaga.Models;
 
 namespace Hendursaga.Services
 {
@@ -15,18 +15,18 @@ namespace Hendursaga.Services
     {
         private readonly HttpClient _httpClient;
         private readonly ILogger<JellyfinMetricsService> _logger;
+        private readonly HendursagaDbContext _dbContext;
         private readonly string _jellyfinUrl;
         private readonly string _apiKey;
-        private readonly string _connectionString;
 
-        public JellyfinMetricsService(HttpClient httpClient, ILogger<JellyfinMetricsService> logger, IConfiguration config)
+        public JellyfinMetricsService(HttpClient httpClient, ILogger<JellyfinMetricsService> logger, HendursagaDbContext dbContext)
         {
             _httpClient = httpClient;
             _logger = logger;
+            _dbContext = dbContext;
 
             _jellyfinUrl = Environment.GetEnvironmentVariable("JELLYFIN_URL")?.Trim();
             _apiKey = Environment.GetEnvironmentVariable("JELLYFIN_API_KEY")?.Trim();
-            _connectionString = config.GetConnectionString("PostgresDB");
 
             if (string.IsNullOrEmpty(_jellyfinUrl) || string.IsNullOrEmpty(_apiKey))
             {
@@ -76,7 +76,7 @@ namespace Hendursaga.Services
 
                 int sessionCount = sessions.GetArrayLength();
 
-                // Store in PostgreSQL
+                // Store in SQLite using EF Core
                 await StoreMetricsAsync(activeUsers, sessionCount);
 
                 _logger.LogInformation("Jellyfin Metrics Updated: Users={Users}, Sessions={Sessions}", activeUsers, sessionCount);
@@ -89,15 +89,14 @@ namespace Hendursaga.Services
 
         private async Task StoreMetricsAsync(int activeUsers, int sessionCount)
         {
-            await using var conn = new NpgsqlConnection(_connectionString);
-            await conn.OpenAsync();
+            var metric = new JellyfinMetric
+            {
+                ActiveUsers = activeUsers,
+                StreamingSessions = sessionCount
+            };
 
-            var query = "INSERT INTO jellyfin_metrics (active_users, streaming_sessions) VALUES (@activeUsers, @sessionCount)";
-            await using var cmd = new NpgsqlCommand(query, conn);
-            cmd.Parameters.AddWithValue("activeUsers", activeUsers);
-            cmd.Parameters.AddWithValue("sessionCount", sessionCount);
-
-            await cmd.ExecuteNonQueryAsync();
+            _dbContext.JellyfinMetrics.Add(metric);
+            await _dbContext.SaveChangesAsync();
         }
     }
 }
