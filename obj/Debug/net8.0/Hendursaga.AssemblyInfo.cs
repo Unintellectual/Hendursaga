@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Hendursaga")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+62185e68edcea59186c8b25660430b926eaa54a4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+85e26aeb6284d3a46489f3b0975909554914013a")]
 [assembly: System.Reflection.AssemblyProductAttribute("Hendursaga")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Hendursaga")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
