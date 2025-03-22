@@ -1,9 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Npgsql;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using Hendursaga.Services;
+using Microsoft.EntityFrameworkCore;
 
 namespace Hendursaga.Controllers
 {
@@ -11,38 +8,24 @@ namespace Hendursaga.Controllers
     [Route("api/jellyfin")]
     public class JellyfinMetricsController : ControllerBase
     {
-        private readonly string _connectionString;
+        private readonly HendursagaDbContext _dbContext;
         private readonly ILogger<JellyfinMetricsController> _logger;
 
-        public JellyfinMetricsController(IConfiguration config, ILogger<JellyfinMetricsController> logger)
+        public JellyfinMetricsController(HendursagaDbContext dbContext, ILogger<JellyfinMetricsController> logger)
         {
-            _connectionString = config.GetConnectionString("PostgresDB");
+            _dbContext = dbContext;
             _logger = logger;
         }
 
         [HttpGet("metrics")]
         public async Task<IActionResult> GetMetrics()
         {
-            var metrics = new List<object>();
-
             try
             {
-                await using var conn = new NpgsqlConnection(_connectionString);
-                await conn.OpenAsync();
-
-                var query = "SELECT timestamp, active_users, streaming_sessions FROM jellyfin_metrics ORDER BY timestamp DESC LIMIT 10";
-                await using var cmd = new NpgsqlCommand(query, conn);
-                await using var reader = await cmd.ExecuteReaderAsync();
-
-                while (await reader.ReadAsync())
-                {
-                    metrics.Add(new
-                    {
-                        Timestamp = reader.GetDateTime(0),
-                        ActiveUsers = reader.GetInt32(1),
-                        StreamingSessions = reader.GetInt32(2)
-                    });
-                }
+                var metrics = await _dbContext.JellyfinMetrics
+                    .OrderByDescending(m => m.Timestamp)
+                    .Take(10)
+                    .ToListAsync();
 
                 return Ok(metrics);
             }

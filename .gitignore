@@ -1,3 +1,5 @@
 /.idea
-/.env
+.env
 /data
+hendursaga.db
+hendursaga.db-journal
