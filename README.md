@@ -1,42 +1,42 @@
 # Hendursaga
 
-## 📌 Overview
+## Overview
 **Hendursaga** is a **local-first** monitoring dashboard designed to oversee your **home network, local servers, and system performance**. Named after the Mesopotamian god **Hendursaga**, known as a divine night watchman and protector, this project embodies vigilance and guardianship over your infrastructure.
 
-## 🚀 Features
-### ✅ System Monitoring
+## Features
+### System Monitoring
 - [ ] Collect **CPU, RAM, Disk, and Network** usage from the local system.
 - [ ] Track **running processes and resource usage**.
 - [ ] Monitor **active network connections** and bandwidth usage.
 
-### ✅ Docker & Kubernetes Monitoring
+### Docker & Kubernetes Monitoring
 - [ ] Display **running Docker containers** and their resource usage.
 - [ ] Monitor **K3s pods and nodes** for status and resource consumption.
 - [ ] Detect **container restarts, failures, and anomalies**.
 
-### ✅ Log Aggregation & Analysis
+### Log Aggregation & Analysis
 - [ ] Use **Logstash to collect system logs** (syslog, application logs, network logs).
 - [ ] Store logs in **Elasticsearch** and analyze them in **Kibana**.
 - [ ] Detect and flag **critical errors and unusual log patterns**.
 
-### ✅ Alerting & Notifications
+### Alerting & Notifications
 - [ ] **Hendursaga Alertmanager** triggers alerts based on custom thresholds.
 - [ ] Send alerts via **Discord, Slack, or Email**.
 - [ ] Custom notification rules for **high CPU usage, memory leaks, or container failures**.
 
-### ✅ Web Dashboard (Blazor + Bootstrap + Grafana + Kibana)
+### Web Dashboard (Blazor + Bootstrap + Grafana + Kibana)
 - [ ] **Real-time graphs** for system performance (CPU, memory, network traffic).
 - [ ] **Kibana integration** for searching logs.
 - [ ] **Container & Kubernetes status overview**.
 - [ ] Customizable widgets for **personalized monitoring**.
 
-### ✅ Local-First & DevOps Automation
+### Local-First & DevOps Automation
 - [ ] **Runs entirely on a local system** without cloud dependencies.
 - [ ] **Dockerized setup** for easy deployment.
 - [ ] **K3s for lightweight Kubernetes orchestration**.
 - [ ] **GitHub Actions** automates build and deployment.
 
-## 🛠️ Tech Stack
+## Tech Stack
 ### **Backend** (.NET 8 + C#)
 - **ASP.NET Core** – Web API for system data.
 - **System.Diagnostics & PerformanceCounter** – System metrics collection.
@@ -58,7 +58,7 @@
 - [ ] **Helm** – Kubernetes package management.
 - [ ] **GitHub Actions** – Automated CI/CD.
 
-## 📌 Next Steps
+## Next Steps
 1. [ ] **Set up K3s locally**.
 2. [ ] **Deploy C# ASP.NET backend** for system metrics.
 3. [ ] **Install Prometheus & Node Exporter**.
